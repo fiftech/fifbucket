@@ -26,10 +26,10 @@ clean:
 	rm -fr venv
 
 lint: venv
-	flake8 *.py
+	flake8 *.py */*.py
 
 autopep8: venv
-	autopep8 -i *.py
+	autopep8 -i *.py */*.py
 
 dev-local: venv
 	pip install -e . --no-deps

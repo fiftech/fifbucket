@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from __future__ import unicode_literals
 from __future__ import print_function
+from __future__ import unicode_literals
+from urllib.parse import urlencode
 import logging
 import requests
 
@@ -43,6 +44,25 @@ class Bitbucket():
     def __delete(self, url, params=None):
         return self.__request('DELETE', url, params)
 
-    def get_pr(self, repo_slug=None):
+    def get_repos(self, page=None, query=None):
+        url = self.API_URL
+        qstr = {}
+        if page:
+            qstr['page'] = page
+        if query:
+            qstr['q'] = query
+        qstr = urlencode(qstr)
+        if qstr:
+            url = '{}?{}'.format(url, qstr)
+        print(url)
+        return self.__get(url)
+
+    def get_pr(self, repo_slug=None, query=None):
         url = '{}/{}/pullrequests'.format(self.API_URL, repo_slug)
+        qstr = {}
+        if query:
+            qstr['q'] = query
+        qstr = urlencode(qstr)
+        if qstr:
+            url = '{}?{}'.format(url, qstr)
         return self.__get(url)
