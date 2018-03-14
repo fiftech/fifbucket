@@ -1,3 +1,5 @@
 requests
 flake8
 autopep8
+wheel
+twine

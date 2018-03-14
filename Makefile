@@ -37,3 +37,7 @@ dev-local: venv
 sdist: venv
 	python setup.py sdist
 
+upload: venv
+	python setup.py bdist_wheel;\
+	twine upload dist/*
+
