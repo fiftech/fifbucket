@@ -2,3 +2,4 @@ venv/
 dist/
 fifbucket.egg-info/
 __pycache__/
+build/
