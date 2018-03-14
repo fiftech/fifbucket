@@ -34,10 +34,9 @@ autopep8: venv
 dev-local: venv
 	pip install -e . --no-deps
 
-sdist: venv
-	python setup.py sdist
+build: venv
+	python setup.py sdist;\
+	python setup.py bdist_wheel
 
 upload: venv
-	python setup.py bdist_wheel;\
 	twine upload dist/*
-
