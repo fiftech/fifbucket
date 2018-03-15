@@ -62,8 +62,8 @@ class Bitbucket():
         repos_size = repos['size']
         if repos_size > 100:
             repos_pages = int(repos_size / 100)
-        for x in range(2, repos_pages + 2):
-            values = values + self.get_repos(page=x, query=None)['values']
+            for x in range(2, repos_pages + 2):
+                values = values + self.get_repos(page=x, query=None)['values']
         return values
 
     def get_pr(self, repo_slug=None, query=None):
