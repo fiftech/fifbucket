@@ -54,7 +54,6 @@ class Bitbucket():
         qstr = urlencode(qstr)
         if qstr:
             url = '{}?{}'.format(url, qstr)
-        print(url)
         return self.__get(url)
 
     def get_pr(self, repo_slug=None, query=None):
