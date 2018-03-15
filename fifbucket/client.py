@@ -47,14 +47,24 @@ class Bitbucket():
     def get_repos(self, page=None, query=None):
         url = self.API_URL
         qstr = {}
+        qstr['pagelen'] = 100
         if page:
             qstr['page'] = page
         if query:
             qstr['q'] = query
         qstr = urlencode(qstr)
-        if qstr:
-            url = '{}?{}'.format(url, qstr)
+        url = '{}?{}'.format(url, qstr)
         return self.__get(url)
+
+    def get_repos_all(self, query=None):
+        repos = self.get_repos(query=query)
+        values = repos['values']
+        repos_size = repos['size']
+        if repos_size > 100:
+            repos_pages = int(repos_size / 100)
+        for x in range(2, repos_pages + 2):
+            values = values + self.get_repos(page=x, query=None)['values']
+        return values
 
     def get_pr(self, repo_slug=None, query=None):
         url = '{}/{}/pullrequests'.format(self.API_URL, repo_slug)
