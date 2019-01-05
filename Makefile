@@ -37,6 +37,9 @@ lint: venv ## Run flake8
 test: venv ## Run tests
 	pytest tests --doctest-modules -v --cov fifbucket --cov-report term-missing --cov-report xml
 
+coveralls: venv ## Run coveralls
+	coveralls
+
 autopep8: venv ## Run autopep8
 	autopep8 -i *.py */*.py
 
