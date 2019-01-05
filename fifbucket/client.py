@@ -7,33 +7,54 @@ from urllib.parse import urlencode
 import logging
 import requests
 
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
+
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 
+def url_plus_query(url, query=None, page=None):
+    qstr = {}
+    qstr['pagelen'] = 100
+    if query:
+        qstr['q'] = query
+    if page:
+        qstr['page'] = page
+    qstr = urlencode(qstr)
+    if qstr:
+        url = '{}?{}'.format(url, qstr)
+    return url
+
+
 class Bitbucket():
-    def __init__(self, bitbucket_url='https://api.bitbucket.org/2.0/repositories',
+    def __init__(self, api_url='https://api.bitbucket.org/2.0',
                  owner=None, username=None, password=None, verify=True):
-        self.bitbucket_url = bitbucket_url
-        self.owner = owner
-        self.verify = verify
-        self.API_URL = '{}/{}'.format(bitbucket_url, owner)
-        self.username = username
+        self.API_URL = api_url
+        self.OWNER = owner
         self.password = password
+        self.username = username
+        self.verify = verify
 
     def __request(self, method, url, params=None):
         logger.info('{} {} Params: {}'.format(method, url, params))
-        r = requests.request(
+        session = requests.Session()
+        retry = Retry(total=5, backoff_factor=1, status_forcelist=[500])
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        request = session.request(
             method, url, json=params, verify=self.verify, auth=(
                 self.username, self.password)
         )
-        logger.debug(r.content)
-        r.raise_for_status()
+        logger.debug(request.content)
+        request.raise_for_status()
         try:
-            return r.json()
+            return request.json()
         except ValueError as e:
             logger.error(e.message)
-            return r.content
+            return request.content
 
     def __get(self, url, params=None):
         return self.__request('GET', url, params)
@@ -44,34 +65,25 @@ class Bitbucket():
     def __delete(self, url, params=None):
         return self.__request('DELETE', url, params)
 
-    def get_repos(self, page=None, query=None):
-        url = self.API_URL
-        qstr = {}
-        qstr['pagelen'] = 100
-        if page:
-            qstr['page'] = page
-        if query:
-            qstr['q'] = query
-        qstr = urlencode(qstr)
-        url = '{}?{}'.format(url, qstr)
-        return self.__get(url)
-
-    def get_repos_all(self, query=None):
-        repos = self.get_repos(query=query)
-        values = repos['values']
-        repos_size = repos['size']
-        if repos_size > 100:
-            repos_pages = int(repos_size / 100)
-            for x in range(2, repos_pages + 2):
-                values = values + self.get_repos(page=x, query=None)['values']
+    def __get_value(self, url):
+        response_json = self.__get(url)
+        values = response_json['values']
+        while 'next' in response_json:
+            response_json = self.__get(response_json['next'])
+            values += response_json['values']
         return values
 
+    def get_repos(self, query=None):
+        url = '{}/repositories/{}'.format(self.API_URL, self.OWNER)
+        url = url_plus_query(url, query)
+        return self.__get_value(url)
+
     def get_pr(self, repo_slug=None, query=None):
-        url = '{}/{}/pullrequests'.format(self.API_URL, repo_slug)
-        qstr = {}
-        if query:
-            qstr['q'] = query
-        qstr = urlencode(qstr)
-        if qstr:
-            url = '{}?{}'.format(url, qstr)
+        url = '{}/repositories/{}/{}/pullrequests'.format(self.API_URL, self.OWNER, repo_slug)
+        url = url_plus_query(url, query)
         return self.__get(url)
+
+    def get_permissions(self, query=None):
+        url = '{}/teams/{}/permissions/repositories'.format(self.API_URL, self.OWNER)
+        url = url_plus_query(url, query)
+        return self.__get_value(url)

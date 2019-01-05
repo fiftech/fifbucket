@@ -4,18 +4,24 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-autopep8==1.3.4
-certifi==2018.1.18        # via requests
+autopep8==1.4.3
+bleach==3.0.2             # via readme-renderer
+certifi==2018.11.29       # via requests
 chardet==3.0.4            # via requests
-flake8==3.5.0
-idna==2.6                 # via requests
+docutils==0.14            # via readme-renderer
+flake8==3.6.0
+idna==2.8                 # via requests
 mccabe==0.6.1             # via flake8
-pkginfo==1.4.1            # via twine
-pycodestyle==2.3.1        # via autopep8, flake8
-pyflakes==1.6.0           # via flake8
+pkginfo==1.4.2            # via twine
+pycodestyle==2.4.0        # via autopep8, flake8
+pyflakes==2.0.0           # via flake8
+pygments==2.3.1           # via readme-renderer
+readme-renderer==24.0     # via twine
 requests-toolbelt==0.8.0  # via twine
-requests==2.18.4
-tqdm==4.19.7              # via twine
-twine==1.10.0
-urllib3==1.22             # via requests
-wheel==0.30.0
+requests==2.21.0
+six==1.12.0               # via bleach, readme-renderer
+tqdm==4.28.1              # via twine
+twine==1.12.1
+urllib3==1.24.1           # via requests
+webencodings==0.5.1       # via bleach
+wheel==0.32.3

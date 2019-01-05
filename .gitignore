@@ -4,3 +4,4 @@ fifbucket.egg-info/
 __pycache__/
 build/
 .env
+*.pyc
