@@ -4,24 +4,46 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+atomicwrites==1.2.1       # via pytest
+attrs==18.2.0             # via pytest
 autopep8==1.4.3
+backcall==0.1.0           # via ipython
 bleach==3.0.2             # via readme-renderer
 certifi==2018.11.29       # via requests
 chardet==3.0.4            # via requests
+coverage==4.5.2           # via coveralls, pytest-cov
+coveralls==1.5.1
+decorator==4.3.0          # via ipython, traitlets
+docopt==0.6.2             # via coveralls
 docutils==0.14            # via readme-renderer
 flake8==3.6.0
 idna==2.8                 # via requests
+ipython-genutils==0.2.0   # via traitlets
+ipython==7.2.0
+jedi==0.13.2              # via ipython
 mccabe==0.6.1             # via flake8
+more-itertools==5.0.0     # via pytest
+parso==0.3.1              # via jedi
+pexpect==4.6.0            # via ipython
+pickleshare==0.7.5        # via ipython
 pkginfo==1.4.2            # via twine
+pluggy==0.8.0             # via pytest
+prompt-toolkit==2.0.7     # via ipython
+ptyprocess==0.6.0         # via pexpect
+py==1.7.0                 # via pytest
 pycodestyle==2.4.0        # via autopep8, flake8
 pyflakes==2.0.0           # via flake8
-pygments==2.3.1           # via readme-renderer
+pygments==2.3.1           # via ipython, readme-renderer
+pytest-cov==2.6.0
+pytest==4.0.2
 readme-renderer==24.0     # via twine
 requests-toolbelt==0.8.0  # via twine
 requests==2.21.0
-six==1.12.0               # via bleach, readme-renderer
+six==1.12.0               # via bleach, more-itertools, prompt-toolkit, pytest, readme-renderer, traitlets
 tqdm==4.28.1              # via twine
+traitlets==4.3.2          # via ipython
 twine==1.12.1
 urllib3==1.24.1           # via requests
+wcwidth==0.1.7            # via prompt-toolkit
 webencodings==0.5.1       # via bleach
 wheel==0.32.3

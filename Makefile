@@ -34,6 +34,9 @@ clean: ## Clean workspace
 lint: venv ## Run flake8
 	flake8 *.py */*.py
 
+test: venv ## Run tests
+	pytest tests --doctest-modules -v --cov fifbucket --cov-report term-missing --cov-report xml
+
 autopep8: venv ## Run autopep8
 	autopep8 -i *.py */*.py
 

@@ -5,3 +5,5 @@ __pycache__/
 build/
 .env
 *.pyc
+coverage.xml
+.coverage
