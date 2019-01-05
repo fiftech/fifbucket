@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open('README.md') as f:
+    long_description = f.read()
+
 setup(
     name='fifbucket',
     packages=find_packages(exclude=['venv*']),
@@ -10,6 +13,8 @@ setup(
     url='https://github.com/fiftech/fifbucket',
     download_url='https://github.com/fiftech/fifbucket/archive/0.8.tar.gz',
     license='MIT',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     keywords=['bitbucket'],
     classifiers=[],
     install_requires=[
