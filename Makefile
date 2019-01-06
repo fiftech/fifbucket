@@ -1,4 +1,5 @@
 SHELL=/bin/bash
+VERSION:=$(shell cat fifbucket/version.py | cut -d "'" -f2)
 export PATH := ./bin:./venv/bin:$(PATH)
 .PHONY: help
 
@@ -47,8 +48,9 @@ dev-local: venv ## install package in virtualenv
 	pip install -e . --no-deps
 
 build: venv ## build package
-	python setup.py sdist;\
-	python setup.py bdist_wheel
+	python setup.py sdist; \
+	python setup.py bdist_wheel;
 
-upload: venv ## upload package
-	twine upload dist/*
+upload: build ## upload package
+	twine upload dist/fifbucket-$(VERSION)-py2.py3-none-any.whl; \
+	twine upload dist/fifbucket-$(VERSION).tar.gz
