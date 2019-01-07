@@ -1,6 +1,6 @@
 
 # fifbucket 
-[![Build Status](https://travis-ci.com/fiftech/fifbucket.svg?branch=master)](https://travis-ci.com/fiftech/fifbucket) [![Coverage Status](https://coveralls.io/repos/github/fiftech/fifbucket/badge.svg?branch=master)](https://coveralls.io/github/fiftech/fifbucket?branch=master) [![Pypi Status](https://pypip.in/v/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Download](https://pypip.in/d/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Wheel](https://pypip.in/wheel/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/)
+[![Build Status](https://travis-ci.com/fiftech/fifbucket.svg?branch=master)](https://travis-ci.com/fiftech/fifbucket) [![Coverage Status](https://coveralls.io/repos/github/fiftech/fifbucket/badge.svg)](https://coveralls.io/github/fiftech/fifbucket) [![Pypi Status](https://pypip.in/v/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Download](https://pypip.in/d/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Wheel](https://pypip.in/wheel/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/)
 
 
 **fifbucket** is a python library for call Bitbucket api: 
