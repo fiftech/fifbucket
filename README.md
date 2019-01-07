@@ -1,4 +1,3 @@
-
 # fifbucket 
 [![Build Status](https://travis-ci.com/fiftech/fifbucket.svg?branch=master)](https://travis-ci.com/fiftech/fifbucket) [![Coverage Status](https://coveralls.io/repos/github/fiftech/fifbucket/badge.svg)](https://coveralls.io/github/fiftech/fifbucket) [![Pypi Status](https://pypip.in/v/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Download](https://pypip.in/d/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/) [![Pypi Wheel](https://pypip.in/wheel/fifbucket/badge.png)](https://pypi.python.org/pypi/fifbucket/)
 
@@ -38,7 +37,7 @@ bitbucket = Bitbucket(owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_P
 * API info: [`https://api.bitbucket.org/2.0/repositories/{username}`](https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D)
 ```python
 PROJECT = 'PROJ'
-QUERY = 'query='project.key="{}"'.format(PROJECT)'
+QUERY = 'project.key="{}"'.format(PROJECT)
 bitbucket.get_repos(query=QUERY)
 ```
 **get_pr example(repo_slug, query) example:** list pull request info from a repo
