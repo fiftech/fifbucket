@@ -73,17 +73,18 @@ class Bitbucket():
             values += response_json['values']
         return values
 
-    def get_repos(self, query=None):
-        url = '{}/repositories/{}'.format(self.API_URL, self.OWNER)
+    def __get_qstr(self, url=None, query=None):
         url = url_plus_query(url, query)
         return self.__get_value(url)
+
+    def get_repos(self, query=None):
+        url = '{}/repositories/{}'.format(self.API_URL, self.OWNER)
+        return self.__get_qstr(url, query)
 
     def get_pr(self, repo_slug=None, query=None):
         url = '{}/repositories/{}/{}/pullrequests'.format(self.API_URL, self.OWNER, repo_slug)
-        url = url_plus_query(url, query)
-        return self.__get(url)
+        return self.__get_qstr(url, query)
 
     def get_permissions(self, query=None):
         url = '{}/teams/{}/permissions/repositories'.format(self.API_URL, self.OWNER)
-        url = url_plus_query(url, query)
-        return self.__get_value(url)
+        return self.__get_qstr(url, query)

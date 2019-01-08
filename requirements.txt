@@ -37,9 +37,10 @@ pygments==2.3.1           # via ipython, readme-renderer
 pytest-cov==2.6.0
 pytest==4.0.2
 readme-renderer==24.0     # via twine
+requests-mock==1.5.2
 requests-toolbelt==0.8.0  # via twine
 requests==2.21.0
-six==1.12.0               # via bleach, more-itertools, prompt-toolkit, pytest, readme-renderer, traitlets
+six==1.12.0               # via bleach, more-itertools, prompt-toolkit, pytest, readme-renderer, requests-mock, traitlets
 tqdm==4.28.1              # via twine
 traitlets==4.3.2          # via ipython
 twine==1.12.1

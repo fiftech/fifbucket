@@ -7,3 +7,4 @@ coveralls
 pytest
 pytest-cov
 ipython
+requests-mock
