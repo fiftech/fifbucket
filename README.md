@@ -48,7 +48,7 @@ REPOSITORY = 'repository_slug'
 bitbucket.get_pr_info(REPOSITORY)
 ```
 
-**get_permissions(query) example:** list info of all admins in a repository
+**get_permissions_repo(repo_slug, query) example:** list info of all admins in a repository
 * API info: [`https://api.bitbucket.org/2.0/teams/{username}/permissions/repositories`](https://developer.atlassian.com/bitbucket/api/2/reference/resource/teams/%7Busername%7D/repositories)
 
 ```python
