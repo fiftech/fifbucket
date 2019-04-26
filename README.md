@@ -53,6 +53,6 @@ bitbucket.get_pr_info(REPOSITORY)
 
 ```python
 REPOSITORY = 'repository_slug'
-QUERY = 'repository.name="{}" AND permission="admin"'.format(REPOSITORY)
-bitbucket.get_permissions(query=QUERY)
+QUERY = 'permission="admin"'
+bitbucket.get_permissions_repo(REPOSITORY, query=QUERY)
 ```

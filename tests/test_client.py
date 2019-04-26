@@ -26,14 +26,14 @@ def test_get_repos(requests_mock):
     assert ['data_first', 'data_second'] == bitbucket.get_repos(query)
 
 
-def test_get_pr(requests_mock):
+def test_get_repo_pr(requests_mock):
     repository_slug = 'repository_slug'
     requests_mock.get(
         'https://api.bitbucket.org/2.0/repositories/owner/repository_slug/pullrequests',
         text=json.dumps(data_first)
     )
     requests_mock.get('https://api.bitbucket.org/2.0/next', text=json.dumps(data_second))
-    assert ['data_first', 'data_second'] == bitbucket.get_pr(repository_slug)
+    assert ['data_first', 'data_second'] == bitbucket.get_repo_pr(repository_slug)
 
 
 def test_get_permissions(requests_mock):
@@ -41,3 +41,12 @@ def test_get_permissions(requests_mock):
     requests_mock.get('https://api.bitbucket.org/2.0/next', text=json.dumps(data_second))
     query = 'repository.name="repository_slug" AND permission="admin"'
     assert ['data_first', 'data_second'] == bitbucket.get_permissions(query)
+
+
+def test_get_permissions_repo(requests_mock):
+    repository_slug = 'repository_slug'
+    requests_mock.get('https://api.bitbucket.org/2.0/teams/owner/permissions/repositories/repository_slug',
+                      text=json.dumps(data_first))
+    requests_mock.get('https://api.bitbucket.org/2.0/next', text=json.dumps(data_second))
+    query = 'permission="admin"'
+    assert ['data_first', 'data_second'] == bitbucket.get_permissions_repo(repository_slug, query)

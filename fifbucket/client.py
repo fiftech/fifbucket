@@ -81,10 +81,14 @@ class Bitbucket():
         url = '{}/repositories/{}'.format(self.API_URL, self.OWNER)
         return self.__get_qstr(url, query)
 
-    def get_pr(self, repo_slug=None, query=None):
+    def get_repo_pr(self, repo_slug=None, query=None):
         url = '{}/repositories/{}/{}/pullrequests'.format(self.API_URL, self.OWNER, repo_slug)
         return self.__get_qstr(url, query)
 
     def get_permissions(self, query=None):
         url = '{}/teams/{}/permissions/repositories'.format(self.API_URL, self.OWNER)
+        return self.__get_qstr(url, query)
+
+    def get_permissions_repo(self, repo_slug=None, query=None):
+        url = '{}/teams/{}/permissions/repositories/{}'.format(self.API_URL, self.OWNER, repo_slug)
         return self.__get_qstr(url, query)
